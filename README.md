@@ -1,4 +1,11 @@
-# Privacy Policy for EasyTrail
+# Privacy Policy for EasyTrail / EasyTrailin Tietosuojaseloste
+
+[In English](#in-english) | [Suomeksi](#suomeksi)
+
+---
+
+<a name="in-english"></a>
+## In English
 
 **Last updated:** September 12, 2026
 
@@ -48,3 +55,57 @@ Since all recorded routes, waypoints, and settings are stored locally on your de
 ### 5. Contact Us
 If you have any questions or suggestions regarding this Privacy Policy, you may contact the developer at:
 * **Email:** easytrail.dev@gmail.com
+
+---
+
+<a name="suomeksi"></a>
+## Suomeksi
+
+**Päivitetty viimeksi:** 12. syyskuuta 2026
+
+EasyTrail ("me" tai "sovellus") on maastopyöräilyyn ja ulkoiluun suunniteltu navigointisovellus, joka tarjoaa reaaliaikaisen reitintallennuksen, ääniohjauksen, sykemittauksen ja sääturvallisuusvaroitukset. Olemme sitoutuneet suojelemaan yksityisyyttäsi. Tämä tietosuojaseloste kuvaa, miten EasyTrail käsittelee tietojasi.
+
+### 1. Tietojen kerääminen ja käyttö
+
+EasyTrail noudattaa periaatetta, jossa käyttäjän yksityisyys on etusijalla: **emme ylläpidä käyttäjätilejä emmekä kerää, tallenna tai myy henkilötietojasi ulkoisille palvelimille.** Kaikki lenkki- ja aktiviteettidata säilytetään vain omalla laitteellasi.
+
+#### a. Sijaintitiedot (Etualalla ja taustalla)
+* **Mitä tietoja käytetään:** Tarkka GPS-sijainti (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`) ja taustasijainti (`ACCESS_BACKGROUND_LOCATION`).
+* **Mihin tietoa käytetään:**
+  * Reitin, matkan, nopeuden ja korkeusprofiilin reaaliaikaiseen tallentamiseen.
+  * Käännös- ja rastikohtaisiin ääniohjeisiin (puhesynteesi / TTS).
+  * Säävaarojen havaitsemiseen reitin varrella (lähestyvät sadealueet ja lähialueen salamaniskut).
+* **Käyttö taustalla:** Kun harjoituksen tallennus tai navigointi on käynnissä, EasyTrail käyttää Androidin taustapalvelua (Foreground Service) sijainnin seuraamiseen myös näytön ollessa sammutettuna tai kun käytät toista sovellusta. Paikannus päättyy välittömästi, kun keskeytät tai lopetat tallennuksen.
+* **Tallennus:** Tallennetut reitit tallennetaan laitteesi sisäiseen muistiin vakiomuotoisina GPX/GeoJSON-tiedostoina. Koordinaatteja ei lähetetä omille tai kolmannen osapuolen palvelimille.
+
+#### b. Terveys- ja sensoritiedot (Syke)
+* **Mitä tietoja käytetään:** Sykelukemat Bluetooth Low Energy (BLE) -antureista (sykevyöt, urheilukellot) käyttäen lupia `BLUETOOTH_SCAN` ja `BLUETOOTH_CONNECT`.
+* **Mihin tietoa käytetään:** Reaaliaikaisten sykealueiden näyttämiseen suorituksen aikana ja syketiedon tallentamiseen GPX-reittipisteisiin.
+* **Yksityisyys:** Bluetooth-skannausta ei käytetä sijainnin määrittämiseen (`neverForLocation`). Syketiedot käsitellään vain laitteessa ja tallennetaan paikalliseen reittitiedostoon.
+
+#### c. Sää- ja ympäristötiedot
+* EasyTrail hakee tietoja julkisista avoimen datan rajapinnoista:
+  * **Ilmatieteen laitos (FMI):** WMS-sadetutkakuvat ja WFS-salamahavainnot (CC BY 4.0).
+  * **Open-Meteo:** Tuuliennustemallit (CC BY 4.0).
+* Näihin palveluihin välitetään ainoastaan kyseisen kartta-alueen koordinaatit säätietojen noutamiseksi. Pyynnöissä ei välitetä käyttäjätunnisteita tai seurantatietoja.
+
+### 2. Kolmannen osapuolen palvelut ja tiedonsiirto
+
+EasyTrail **ei** jaa, myy tai luovuta henkilö-, sijainti- tai terveystietojasi mainostajille tai tiedonvälittäjille.
+* **Karttapalvelut:** Kartat ja polkuaineistot piirretään avoimen lähdekoodin MapLibre GL Native -moottorilla hyödyntäen OpenStreetMap- ja MapAnt-aineistoja.
+* **Tiedostojen hallinta:** Omistat ja hallitset GPX-tiedostojasi täysin itse. Voit viedä, jakaa tai poistaa niitä milloin tahansa sovelluksen reittikirjaston tai laitteen tiedostonhallinnan kautta.
+
+### 3. Sovelluksen käyttöoikeudet
+* **Sijainti:** Tarvitaan GPS-navigointiin, reitin tallentamiseen ja paikallisiin säähälytyksiin.
+* **Bluetooth:** Tarvitaan yhteyden muodostamiseen langattomiin BLE-sykeantureihin.
+* **Ilmoitukset ja taustapalvelu:** Tarvitaan jatkuvaan reitin tallennukseen ja ääniopastukseen puhelimen ollessa taskussa.
+* **Värinä:** Käytetään haptisiin hälytyksiin (reittipoikkeamat, lähestyvä sade, salamavaroitukset).
+
+### 4. Tietojen säilytys ja poistaminen
+Koska kaikki tallennetut reitit, rastit ja asetukset säilytetään vain laitteesi muistissa:
+* Voit poistaa yksittäisiä reittejä milloin tahansa sovelluksen kirjastosta.
+* Sovelluksen poistaminen laitteesta tai sovellustietojen tyhjentäminen poistaa kaikki tallennetut tiedot pysyvästi.
+
+### 5. Yhteystiedot
+Jos sinulla on kysyttävää tästä tietosuojaselosteesta, voit ottaa yhteyttä kehittäjään:
+* **Sähköposti:** easytrail.dev@gmail.com
