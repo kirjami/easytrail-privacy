@@ -7,7 +7,7 @@
 <a name="in-english"></a>
 ## In English
 
-**Last updated:** September 12, 2026
+**Last updated:** September 19, 2026
 
 EasyTrail ("we", "our", or "app") is a specialized mountain biking and outdoor navigation application developed to provide real-time route recording, navigation guidance, heart rate monitoring, and weather safety alerts. We are committed to protecting your privacy. This Privacy Policy explains how EasyTrail handles your data.
 
@@ -26,8 +26,8 @@ EasyTrail is designed with a privacy-first approach: **we do not operate persona
 
 #### b. Health and Sensor Data (Heart Rate)
 * **What we access:** Heart rate data via Bluetooth Low Energy (BLE) sensors (heart rate belts, compatible sports watches) using `BLUETOOTH_SCAN` and `BLUETOOTH_CONNECT`.
-* **Why we need it:** To display real-time heart rate zones during your ride and embed heart rate telemetry into your saved GPX tracks.
-* **Privacy:** EasyTrail does not use Bluetooth scanning to infer your location (`neverForLocation`). Heart rate data is processed in real time and saved only inside your local GPX file.
+* **Why we need it:** To display real-time heart rate zones (Z1–Z5) during your ride, color-code route segments by intensity, and embed heart rate telemetry into your saved GPX tracks via standard TrackPointExtension format.
+* **Privacy:** EasyTrail does not use Bluetooth scanning to infer your location (`neverForLocation`). Heart rate data is processed in real time and saved strictly inside your local GPX files. It is never transmitted to external servers or third parties.
 
 #### c. Weather and Environmental Data
 * EasyTrail queries open, public weather APIs:
@@ -39,7 +39,7 @@ EasyTrail is designed with a privacy-first approach: **we do not operate persona
 
 EasyTrail does **not** share, sell, or monetize your personal, location, or health data with advertisers or data brokers.
 * **Map Services:** Map tiles and trail data are rendered using open-source MapLibre GL Native and OpenStreetMap/MapAnt open datasets.
-* **Local Storage:** You have full ownership and control of your GPX files. You may export, share, or delete them at any time using your device's file manager or the app's route library.
+* **Local Storage & Track Sharing:** You have full ownership and control of your GPX files. When sharing or exporting routes to other apps, EasyTrail provides an option to automatically strip heart rate data from the exported file, allowing you to share route paths while keeping your biometric data private.
 
 ### 3. Permissions Summary
 * **Location:** Required for GPS navigation, route tracking, and localized weather hazard calculations.
@@ -61,7 +61,7 @@ If you have any questions or suggestions regarding this Privacy Policy, you may 
 <a name="suomeksi"></a>
 ## Suomeksi
 
-**Päivitetty viimeksi:** 12. syyskuuta 2026
+**Päivitetty viimeksi:** 19. syyskuuta 2026
 
 EasyTrail ("me" tai "sovellus") on maastopyöräilyyn ja ulkoiluun suunniteltu navigointisovellus, joka tarjoaa reaaliaikaisen reitintallennuksen, ääniohjauksen, sykemittauksen ja sääturvallisuusvaroitukset. Olemme sitoutuneet suojelemaan yksityisyyttäsi. Tämä tietosuojaseloste kuvaa, miten EasyTrail käsittelee tietojasi.
 
@@ -80,8 +80,8 @@ EasyTrail noudattaa periaatetta, jossa käyttäjän yksityisyys on etusijalla: *
 
 #### b. Terveys- ja sensoritiedot (Syke)
 * **Mitä tietoja käytetään:** Sykelukemat Bluetooth Low Energy (BLE) -antureista (sykevyöt, urheilukellot) käyttäen lupia `BLUETOOTH_SCAN` ja `BLUETOOTH_CONNECT`.
-* **Mihin tietoa käytetään:** Reaaliaikaisten sykealueiden näyttämiseen suorituksen aikana ja syketiedon tallentamiseen GPX-reittipisteisiin.
-* **Yksityisyys:** Bluetooth-skannausta ei käytetä sijainnin määrittämiseen (`neverForLocation`). Syketiedot käsitellään vain laitteessa ja tallennetaan paikalliseen reittitiedostoon.
+* **Mihin tietoa käytetään:** Reaaliaikaisten sykealueiden (Z1–Z5) näyttämiseen, reittiviivan värikoodaukseen rasitustason mukaan sekä syketiedon tallentamiseen GPX-reittipisteisiin standardinmukaisena TrackPointExtension-laajennuksena.
+* **Yksityisyys:** Bluetooth-skannausta ei käytetä sijainnin määrittämiseen (`neverForLocation`). Syketiedot käsitellään ainoastaan laitteessa reaaliaikaisesti ja tallennetaan paikalliseen reittitiedostoon. Tietoja ei koskaan lähetetä ulkoisille palvelimille.
 
 #### c. Sää- ja ympäristötiedot
 * EasyTrail hakee tietoja julkisista avoimen datan rajapinnoista:
@@ -93,7 +93,7 @@ EasyTrail noudattaa periaatetta, jossa käyttäjän yksityisyys on etusijalla: *
 
 EasyTrail **ei** jaa, myy tai luovuta henkilö-, sijainti- tai terveystietojasi mainostajille tai tiedonvälittäjille.
 * **Karttapalvelut:** Kartat ja polkuaineistot piirretään avoimen lähdekoodin MapLibre GL Native -moottorilla hyödyntäen OpenStreetMap- ja MapAnt-aineistoja.
-* **Tiedostojen hallinta:** Omistat ja hallitset GPX-tiedostojasi täysin itse. Voit viedä, jakaa tai poistaa niitä milloin tahansa sovelluksen reittikirjaston tai laitteen tiedostonhallinnan kautta.
+* **Tiedostojen hallinta ja jakaminen:** Omistat ja hallitset GPX-tiedostojasi täysin itse. Kun jaat tai viet reittejä laitteesi jakovalikon kautta, EasyTrail tarjoaa mahdollisuuden poistaa syketiedot jaettavasta tiedostosta, jolloin voit jakaa reittipohjan ilman henkilökohtaisia biometrisiä tietoja.
 
 ### 3. Sovelluksen käyttöoikeudet
 * **Sijainti:** Tarvitaan GPS-navigointiin, reitin tallentamiseen ja paikallisiin säähälytyksiin.
