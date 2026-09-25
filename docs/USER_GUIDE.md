@@ -12,7 +12,7 @@ Ennen ensimmäiselle maastolenkille lähtöä varmista sovelluksen asetukset ja 
   <img src="images/tervetuloa.jpg" width="320" alt="Tervetulonäkymä ja luvat">
 </div>
 
-### Vaihe 1: Luvatin salliminen
+### Vaihe 1: Lupien salliminen
 1. **Käynnistä EasyTrail** ensimmäistä kertaa.
 2. **Salli sijaintilupa**: Kun sovellus kysyy sijaintilupaa, valitse tarkan sijainnin haku.
 3. **Aseta taustasijainti (TÄRKEIN VAIHE)**: Kun järjestelmä kysyy taustasijaintia, siirry puhelimen asetuksiin ja valitse **"SALLI AINA"** (Allow all the time).
@@ -44,7 +44,15 @@ Karttanäyttö on suunniteltu tarjoamaan mahdollisimman selkeän kuvan maastosta
    - **Tiekartta**: Selkeä katu- ja tieverkostopohja siirtymille.
    - **Suunnistus**: MapAnt-suunnistuskartta erittäin yksityiskohtaiseen maastolukuun.
 
-### Vaihe 2: Polkujen vaikeusasteiden lukeminen kartalta
+### Vaihe 2: Offline-karttojen lataaminen maastokäyttöön
+Jos liikut verkkoyhteyksien ulkopuolella, voit ladata kartta-alueet valmiiksi laitteen muistiin:
+1. Avaa sivuvalikosta tai päänäytöltä **Lataa offline-kartta**.
+2. Siirrä ja rajaa haluamasi maastoalue ruudulla näkyvän kehyksen sisään (yksittäisen alueen enimmäiskoko on 500 km²).
+3. Sovellus laskee alueen pinta-alan (km²) ja näyttää arvioidun latauskoon.
+4. Valitse ladattavat karttatasot (*Maasto, Satelliitti, Tiekartta, Suunnistus*) ja aloita lataus.
+5. Ladattuja alueita voit tarkastella, nimetä uudelleen (esim. *"Syöte MTB"*) ja poistaa valikon **Ladatut offline-kartat** -näkymässä.
+
+### Vaihe 3: Polkujen vaikeusasteiden lukeminen kartalta
 Karttapohjan päällä näkyvät katkoviivaistetut MTB-polut, jotka on luokiteltu niiden teknisen vaikeusasteen mukaan:
 
 - 🔷 **Syaani / Vaaleansininen**: Erittäin helppo, tasainen neulaspolku tai hiekkaura.
@@ -55,11 +63,11 @@ Karttapohjan päällä näkyvät katkoviivaistetut MTB-polut, jotka on luokitelt
 - 🟣 **Violetti**: Vaativin / lähes ajokelvoton maasto-osuus.
 - ⚪ **Harmaa**: Peruspolku tai muu luokittelematon ura.
 
-### Vaihe 3: Kartan keskittäminen ja suuntalukitus
-1. Napauta oikean alareunan **🎯 Keskitä** -painiketta siirtääksesi karttakameran välittömästi nykyiseen GPS-sijaintiisi.
-2. Napauta **🧭 Suuntaus** -painiketta vaihtaaksesi kartan kääntymistä:
-   - *Pohjoinen ylhäällä*: Kartta pysyy kiinteästi pohjoissuunnassa.
-   - *Ajosuunta ylhäällä*: Kartta kääntyy automaattisesti kulkusuuntasi mukaan, mikä helpottaa risteyskatselua ajon aikana.
+### Vaihe 4: Kartan keskittäminen ja suunnan lukitus
+Näytöllä on kaksi navigointipainiketta, jotka keskittävät kartan nykyiseen GPS-sijaintiisi ja lukitsevat kartan katselukulman:
+
+- **🧭 Pohjoinen ylhäällä (Kompassipainike)**: Keskittää kartan sijaintiisi ja pitää kartan kiinteästi pohjoissuunnassa.
+- **➢ Kulkusuunta ylhäällä (Navigointipainike)**: Keskittää kartan sijaintiisi ja kääntää karttaa automaattisesti kulkusuuntasi ja kompassin mukaan, mikä helpottaa risteyskatselua maastossa ajon aikana.
 
 ---
 
@@ -72,8 +80,8 @@ Ajonäyttö tarjoaa selkeät reaaliaikaiset mittarit ja ohjaimet lenkin aikana.
 </div>
 
 ### Vaihe 1: Lenkin käynnistäminen
-1. Varmista, että GPS-sijainti on löytynyt (vihreä kuvake näytöllä).
-2. Paina ruudun alareunan vihreää **TALLENNA**-painiketta.
+1. Varmista, että sininen navigointinuoli näkyy kartalla nykyisessä sijainnissasi.
+2. Paina ruudun alareunan vihreää **ALOITA**-painiketta.
 3. Sovellus luo automaattisesti aloituspisteen ja aloittaa matkan, ajan ja koordinaattien tallennuksen.
 
 ### Vaihe 2: Ajonäytön mittarien seuranta
@@ -85,16 +93,17 @@ Ajon aikana näet ruudulta seuraavat tiedot:
 - **Korkeusprofiili**: Reaaliaikainen maaston korkeuskäyrä ruudun alalaidassa.
 - **Syke & Sykealue**: Nykyinen sykelukema ja sykevyöhyke (Z1–Z5), jos sykevyö on kytketty.
 
-### Vaihe 3: Tauotus ja jatkaminen
-1. Kun pidät taukopaikan, napauta **TAUKO**-painiketta. Ajan laskenta ja matkamittari pysähtyvät.
-2. Tauon jälkeen jatka lenkkiä napauttamalla **JATKA**-painiketta.
-
-### Vaihe 4: Lenkin lopetus ja tallennus
-1. Kun saavut maaliin, napauta **LOPETA**-painiketta.
-2. Ruudulle avautuu tallennusikkuna:
+### Vaihe 3: Tauotus, jatkaminen ja tallennus
+1. **Tauotus**: Kun pidät taukopaikan tai haluat tauottaa seurannan, napauta punaista **LOPETA**-painiketta. Tallennus siirtyy taukotilaan ja ruudulle avautuu ohjausvalikko.
+2. **Jatkaminen**: Tauon jälkeen jatka lenkin tallennusta napauttamalla vihreää **JATKA**-painiketta.
+3. **Tallennus**: Kun lenkki on valmis, napauta **LOPETA**-painiketta ja valitse valikosta keltainen **TALLENNA**-painike:
    - Kirjoita lenkille nimi (esim. *"Iltalenkki Kaupissa"*).
    - Valitse suorituslaji (*Pyöräily, Kävely & Vaellus, Juoksu, Hiihto, Muu*).
    - Tallenna lenkki napauttamalla **Tallenna**. Lenkki siirtyy automaattisesti Reittigalleriaasi.
+4. **Hylkääminen**: Jos haluat poistaa lenkin tallentamatta sitä, valitse valikosta punainen **POISTA**-painike.
+
+> [!TIP]
+> **Iskunkestävä tallennus:** Sovellus tallentaa jokaisen GPS-pisteen reaaliaikaisesti laitteen tallennustilaan. Jos puhelimen akku loppuu tai sovellus sulkeutuu yllättäen taustalla (esim. kuvattaessa videota kamerasovelluksella), EasyTrail palauttaa lenkin automaattisesti kartalle heti seuraavassa käynnistyksessä.
 
 ---
 
@@ -108,7 +117,7 @@ Voit merkitä maastossa tärkeitä paikkoja, kuten taukopaikkoja, näköalapaikk
 
 ### Vaihe 1: Reittipisteen lisääminen
 1. **Omalle kohdalle**: Napauta ajon aikana alareunan **+ Rasti** -painiketta merkitäksesi nykyisen sijaintisi.
-2. **Kartalta valitsemalla**: Paina karttaa pitkään mistä tahansa kohdasta merkitäksesi kyseisen paikan.
+2. **Karttalalta valitsemalla**: Paina karttaa pitkään mistä tahansa kohdasta merkitäksesi kyseisen paikan.
 3. Valitse pisteen tyyppi (*Lähtö, Maali, Taukopaikka, Näköalapaikka, Huomio, Rasti*) ja kirjoita sille halutessasi nimi.
 
 ### Vaihe 2: Pisteiden selaaminen ja tarkastelu
