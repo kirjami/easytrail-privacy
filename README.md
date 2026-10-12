@@ -7,129 +7,141 @@
 <a name="in-english"></a>
 ## In English
 
-**Last updated:** September 20, 2026
+**Last updated:** October 12, 2026
 
-EasyTrail ("we", "our", or "app") is a specialized mountain biking and outdoor navigation application developed to provide real-time route recording, navigation guidance, heart rate monitoring, and weather safety alerts. We are committed to protecting your privacy. This Privacy Policy explains how EasyTrail handles your data and outlines the terms regarding safety and user responsibility.
+EasyTrail ("we", "our", or "app") is a specialized mountain biking and outdoor navigation application developed to provide real-time route recording, navigation guidance, tile hunting exploration, heart rate monitoring, and weather safety alerts. We are committed to protecting your privacy. This Privacy Policy explains how EasyTrail handles your data and outlines the terms regarding safety, data handling, and user responsibility.
 
 ### 1. Data Collection and Usage
 
-EasyTrail is designed with a privacy-first approach: **we do not operate personal user accounts, and we do not collect, store, or sell your personal data on external servers.** All core activity data stays locally on your device.
+EasyTrail is designed with an offline-first, privacy-by-design architecture: **we do not operate personal user accounts, and we do not collect, store, transmit, or monetize your personal data on external servers.** All activity and navigation data stays locally on your device.
 
 #### a. Location Data (Foreground and Background)
-* **What we access:** Precise GPS location (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`) and background location (`ACCESS_BACKGROUND_LOCATION`).
-* **Why we need it:**
-  * To record your route, distance, speed, and elevation in real time.
-  * To provide turn-by-turn and waypoint voice alerts via Text-to-Speech (TTS).
-  * To analyze weather hazards along your route, specifically alerting you to approaching rain fronts and nearby lightning strikes.
-* **Background usage:** When a workout or navigation session is active, EasyTrail uses an Android Foreground Service to track your location even when your screen is turned off or when you switch to another app. Location tracking stops immediately when you pause or finish your workout.
-* **Storage:** Recorded tracks are saved locally on your device as standard GPX/GeoJSON files. No location coordinates are uploaded to our servers.
+- **What we access:** Precise GPS location (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`) and background location access (`ACCESS_BACKGROUND_LOCATION`).
+- **Why we need it:**
+  * To record your route path, distance, speed, and elevation profiles in real time.
+  * To register and capture visited map tiles (Tile Hunting / Explorer Tiles) on the OpenStreetMap Zoom 14 grid as you traverse terrain.
+  * To provide turn-by-turn navigation and waypoint alerts via Text-to-Speech (TTS).
+  * To analyze weather hazards along your active path, alerting you to approaching rain radar fronts and nearby lightning strikes.
+- **Background usage:** When a workout, route recording, or tile hunting session is active, EasyTrail operates an Android Foreground Service (`TrackingService`) to track your location continuously even when your screen is locked, turned off, or when you switch to another app. Location polling terminates immediately when you pause or finish the recording session.
+- **Storage:** GPS tracks are saved locally on your device as standard GPX/GeoJSON files. Tile hunting progress is stored locally in an on-device Room database. No location coordinates or captured tile histories are ever transmitted to developer or third-party servers.
 
-#### b. Health and Sensor Data (Heart Rate)
-* **What we access:** Heart rate data via Bluetooth Low Energy (BLE) sensors (heart rate belts, compatible sports watches) using `BLUETOOTH_SCAN` and `BLUETOOTH_CONNECT`.
-* **Why we need it:** To display real-time heart rate zones (Z1–Z5) during your ride, color-code route segments by intensity, and embed heart rate telemetry into your saved GPX tracks via standard TrackPointExtension format.
-* **Privacy:** EasyTrail does not use Bluetooth scanning to infer your location (`neverForLocation`). Heart rate data is processed in real time and saved strictly inside your local GPX files. It is never transmitted to external servers or third parties.
+#### b. Tile Hunting Data (Ruutujen metsästys)
+- **What is processed:** Geographic coordinates of visited OpenStreetMap Zoom 14 Slippy Map tiles, tile visit counts, and grid cluster metrics (Max Square, Max Cluster, and Max Connected Area).
+- **Processing and imports:** All tile calculations, including batch GPX or KML history parsing, execute entirely on-device within the local database engine. No activity files or personal movement heatmaps are uploaded to external cloud services.
+- **Compatibility:** Tile algorithms adhere to open OpenStreetMap standards and public VeloViewer/StatsHunters rule sets for user verification, but EasyTrail operates as an independent offline client and does not synchronize data with those platforms unless you manually export and upload files yourself.
 
-#### c. Weather and Environmental Data
-* EasyTrail queries open, public weather APIs:
-  * **Finnish Meteorological Institute (FMI):** WMS radar images and WFS lightning observation data (CC BY 4.0).
-  * **Open-Meteo:** Wind vector forecasts (CC BY 4.0).
-* These requests transmit coordinates solely to fetch relevant local weather tiles and observation points. No persistent user identifiers or tracking cookies are attached to these network requests.
+#### c. Health and Sensor Data (Heart Rate)
+- **What we access:** Real-time heart rate measurements via Bluetooth Low Energy (BLE) sensors (heart rate straps, sports watches) using `BLUETOOTH_SCAN` and `BLUETOOTH_CONNECT`.
+- **Why we need it:** To compute real-time heart rate training zones (Z1–Z5), color-code track segments by cardiovascular intensity, and embed heart rate telemetry into locally saved GPX tracks via standard TrackPointExtension schemas.
+- **Privacy:** Bluetooth scanning is explicitly flagged as `neverForLocation`. Sensor readings are processed purely in real time and saved inside your local files. Sensor telemetry is never sent off-device.
+
+#### d. Weather and Environmental Data
+- EasyTrail queries public open-data APIs:
+  * **Finnish Meteorological Institute (FMI):** WMS radar composite imagery and WFS lightning observation vectors (CC BY 4.0).
+  * **Open-Meteo:** Global wind vector models and forecasts (CC BY 4.0).
+- These requests submit bounding coordinates strictly to fetch relevant visual map tiles and weather vectors. No persistent user identifiers, advertising IDs, or tracking cookies are attached to these network calls.
 
 ### 2. Third-Party Services and Data Sharing
 
-EasyTrail does **not** share, sell, or monetize your personal, location, or health data with advertisers or data brokers.
-* **Map Services:** Map tiles and trail data are rendered using open-source MapLibre GL Native and OpenStreetMap/MapAnt open datasets.
-* **Local Storage & Track Sharing:** You have full ownership and control of your GPX files. When sharing or exporting routes to other apps, EasyTrail provides an option to automatically strip heart rate data and timestamps from the exported file, allowing you to share route paths while keeping your biometric and temporal data private.
+EasyTrail does **not** sell, broker, or transmit your personal, location, fitness, or tile exploration data to third parties.
+- **Map Rendering:** Offline and cached maps are rendered locally using MapLibre GL Native with open spatial datasets (OpenStreetMap, MapAnt Finland).
+- **User-Initiated Export & Privacy Filters:** You maintain exclusive custody of your GPX and KML files. When sharing or exporting routes via the system share sheet, EasyTrail provides privacy tools to strip heart rate telemetry and absolute timestamps, enabling you to share geographic routes without disclosing personal biometric schedules.
 
 ### 3. Permissions Summary
-* **Location:** Required for GPS navigation, route tracking, and localized weather hazard calculations.
-* **Bluetooth:** Required to pair with external BLE heart rate monitors.
-* **Notifications & Foreground Service:** Required to maintain continuous recording and voice prompts when the device is locked in your pocket or pack.
-* **Vibration:** Used for haptic alerts indicating waypoints, lightning warnings, or approaching rain.
+- **Location (`ACCESS_FINE_LOCATION`, `ACCESS_BACKGROUND_LOCATION`):** Required for route recording, tile hunting capture, turn-by-turn guidance, and real-time weather alerts when active or locked.
+- **Bluetooth (`BLUETOOTH_SCAN`, `BLUETOOTH_CONNECT`):** Required for communication with external BLE heart rate monitors.
+- **Foreground Service & Notifications:** Required to maintain uninterrupted background recording and voice announcements in your pocket or pack.
+- **Vibration:** Used for haptic navigation cues, tile discovery notifications, and lightning proximity alerts.
 
 ### 4. Data Retention and Deletion
-Since all recorded routes, waypoints, and settings are stored locally on your device's internal storage:
-* You can delete individual routes directly from the in-app library.
-* Uninstalling EasyTrail or clearing the app storage permanently removes all stored application data.
+All application states, routes, waypoints, and tile hunting records reside exclusively on local device storage:
+- You can clear individual routes or reset tile hunting records directly within application settings and sheet menus.
+- Uninstalling EasyTrail or wiping application storage via Android system settings irreversibly purges all local databases, recorded GPX tracks, and cached map tiles.
 
 ### 5. Disclaimer and Safety Notice
 
 #### a. Fitness and Heart Rate Tracking (Non-Medical Use)
-EasyTrail is strictly a general fitness and recreational tool. **EasyTrail is not a medical device, and none of its features, metrics, heart rate readings, or training zone estimations (Z1–Z5) are intended for medical diagnosis, health monitoring, treatment, or prevention of any disease or acute health condition.** Biometric data displayed by the app may be influenced by external sensor tolerances, signal noise, or connection drops. Always consult a licensed healthcare professional before undertaking strenuous physical exertion or if you have pre-existing cardiovascular conditions. Never disregard professional medical advice or delay seeking treatment based on data shown in EasyTrail.
+EasyTrail is strictly an recreational outdoor sports tool. **EasyTrail is not a medical device, and none of its features, metrics, heart rate readings, or training zone estimations (Z1–Z5) are intended for medical diagnosis, health monitoring, treatment, or prevention of any disease or acute health condition.** Always consult a licensed medical professional before beginning strenuous athletic activity or if you experience cardiovascular symptoms.
 
 #### b. Navigation, Route Safety, and Outdoor Risks
-Mountain biking, trail riding, and off-road navigation carry inherent risks of bodily injury, physical exhaustion, severe weather exposure, and disorientation. 
-* Map datasets, elevation models, trail ratings, and weather forecasts (radar and lightning detection) are retrieved from third-party open datasets and satellite positioning systems. These sources can contain inaccuracies, geographic changes, signal dropouts, or transmission delays.
-* Weather hazard alerts (such as rain and lightning proximity) are advisory indicators only and should not be relied upon as a sole life-safety resource.
-* **Assumption of Risk:** You navigate and engage in outdoor activities solely at your own discretion and risk. You are entirely responsible for exercising situational awareness, selecting trails suitable for your technical skill and physical fitness, checking local weather conditions, carrying adequate safety equipment, and obeying local laws and access rights (Jokamiehenoikeus).
-* **Limitation of Liability:** To the maximum extent permitted by applicable law, the developer of EasyTrail assumes no liability or responsibility for any direct, indirect, incidental, or consequential damages, personal injury, health emergencies, property damage, or losses resulting from the use of, or inability to use, this application.
+Mountain biking, backcountry trail navigation, and tile hunting across unfamiliar terrain carry inherent physical risks, including falls, collisions, exhaustion, severe weather encounters, and disorientation.
+- Map datasets, trail classifications, GPS coordinates, elevation figures, and weather feeds originate from open third-party sources and satellite networks. Information may contain inaccuracies, seasonal trail closures, private property changes, or signal loss.
+- **Tile hunting caution:** Do not enter dangerous terrain, steep cliffs, restricted private property, nature reserves with restricted access, or hazardous railway/highway corridors in pursuit of map tiles.
+- **Assumption of Risk:** You participate in outdoor activities and route navigation entirely at your own risk and discretion. You are responsible for route vetting, physical stamina, safety gear, environmental situational awareness, and respecting local laws, landowners, and access rights (Jokamiehenoikeus).
+- **Limitation of Liability:** To the maximum extent permitted under applicable law, the author of EasyTrail disclaims all liability for direct, indirect, incidental, or consequential damages, personal injuries, health emergencies, property damage, or losses resulting from the use or technical unavailability of this software.
 
 ### 6. Contact Us
-If you have any questions or suggestions regarding this Privacy Policy, you may contact the developer at:
-* **Email:** easytrail.dev@gmail.com
+For questions, feedback, or inquiries regarding this Privacy Policy:
+- **Email:** easytrail.dev@gmail.com
 
 ---
 
 <a name="suomeksi"></a>
 ## Suomeksi
 
-**Päivitetty viimeksi:** 20. syyskuuta 2026
+**Päivitetty viimeksi:** 12. lokakuuta 2026
 
-EasyTrail ("me" tai "sovellus") on maastopyöräilyyn ja ulkoiluun suunniteltu navigointisovellus, joka tarjoaa reaaliaikaisen reitintallennuksen, ääniohjauksen, sykemittauksen ja sääturvallisuusvaroitukset. Olemme sitoutuneet suojelemaan yksityisyyttäsi. Tämä tietosuojaseloste kuvaa, miten EasyTrail käsittelee tietojasi sekä määrittelee sovelluksen turvallisuusehdot ja vastuunjaon.
+EasyTrail ("me" tai "sovellus") on maastopyöräilyyn ja ulkoiluun kehitetty navigointisovellus, joka tarjoaa reaaliaikaisen reitintallennuksen, ääniohjauksen, karttaruutujen valloituksen (Tile Hunting), sykemittauksen ja sääturvallisuusvaroitukset. Olemme sitoutuneet suojelemaan yksityisyyttäsi. Tämä tietosuojaseloste kuvaa, miten EasyTrail käsittelee tietojasi sekä määrittelee sovelluksen turvallisuusehdot ja vastuunjaon.
 
 ### 1. Tietojen kerääminen ja käyttö
 
-EasyTrail noudattaa periaatetta, jossa käyttäjän yksityisyys on etusijalla: **emme ylläpidä käyttäjätilejä emmekä kerää, tallenna tai myy henkilötietojasi ulkoisille palvelimille.** Kaikki lenkki- ja aktiviteettidata säilytetään vain omalla laitteellasi.
+EasyTrail noudattaa periaatetta, jossa käyttäjän yksityisyys ja tietojen paikallisuus ovat ensisijaisia: **emme ylläpidä käyttäjätilejä emmekä kerää, tallenna, siirrä tai myy henkilötietojasi ulkoisille palvelimille.** Kaikki harjoitus-, reitti- ja karttadata säilytetään ainoastaan omalla laitteellasi.
 
 #### a. Sijaintitiedot (Etualalla ja taustalla)
-* **Mitä tietoja käytetään:** Tarkka GPS-sijainti (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`) ja taustasijainti (`ACCESS_BACKGROUND_LOCATION`).
-* **Mihin tietoa käytetään:**
+- **Mitä tietoja käytetään:** Tarkka GPS-sijainti (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`) ja taustasijainti (`ACCESS_BACKGROUND_LOCATION`).
+- **Mihin tietoa käytetään:**
   * Reitin, matkan, nopeuden ja korkeusprofiilin reaaliaikaiseen tallentamiseen.
-  * Käännös- ja rastikohtaisiin ääniohjeisiin (puhesynteesi / TTS).
-  * Säävaarojen havaitsemiseen reitin varrella (lähestyvät sadealueet ja lähialueen salamaniskut).
-* **Käyttö taustalla:** Kun harjoituksen tallennus tai navigointi on käynnissä, EasyTrail käyttää Androidin taustapalvelua (Foreground Service) sijainnin seuraamiseen myös näytön ollessa sammutettuna tai kun käytät toista sovellusta. Paikannus päättyy välittömästi, kun keskeytät tai lopetat tallennuksen.
-* **Tallennus:** Tallennetut reitit tallennetaan laitteesi sisäiseen muistiin vakiomuotoisina GPX/GeoJSON-tiedostoina. Koordinaatteja ei lähetetä omille tai kolmannen osapuolen palvelimille.
+  * Uusien karttaruutujen havaitsemiseen ja valloittamiseen (OpenStreetMap Zoom 14 -ruudukko) maastossa liikuttaessa.
+  * Käännös- ja reittipisteopastukseen puhesynteesillä (TTS).
+  * Säävaarojen arviointiin reitillä (lähestyvät sadealueet ja lähialueen salamahavainnot).
+- **Käyttö taustalla:** Kun harjoituksen tallennus, navigointi tai ruutujen metsästys on aktiivinen, EasyTrail käyttää Androidin taustapalvelua (`TrackingService` / Foreground Service) sijaintisi seuraamiseen ja tiilien valloitukseen myös silloin, kun näyttö on suljettuna, puhelin on taskussa tai käytät toista sovellusta. Paikannus ja taustapalvelu pysähtyvät välittömästi, kun keskeytät tai päätät tallennuksen.
+- **Tallennus:** Tallennetut reitit tallennetaan laitteesi sisäiseen muistiin standardeina GPX/GeoJSON-tiedostoina. Valloitetut tiilitiedot tallennetaan laitteen paikalliseen Room-tietokantaan. Sijaintikoordinaatteja tai valloitettuja ruutuja ei lähetetä omille tai ulkopuolisille palvelimille.
 
-#### b. Terveys- ja sensoritiedot (Syke)
-* **Mitä tietoja käytetään:** Sykelukemat Bluetooth Low Energy (BLE) -antureista (sykevyöt, urheilukellot) käyttäen lupia `BLUETOOTH_SCAN` ja `BLUETOOTH_CONNECT`.
-* **Mihin tietoa käytetään:** Reaaliaikaisten sykealueiden (Z1–Z5) näyttämiseen, reittiviivan värikoodaukseen rasitustason mukaan sekä syketiedon tallentamiseen GPX-reittipisteisiin standardinmukaisena TrackPointExtension-laajennuksena.
-* **Yksityisyys:** Bluetooth-skannausta ei käytetä sijainnin määrittämiseen (`neverForLocation`). Syketiedot käsitellään ainoastaan laitteessa reaaliaikaisesti ja tallennetaan paikalliseen reittitiedostoon. Tietoja ei koskaan lähetetä ulkoisille palvelimille.
+#### b. Ruutujen metsästys (Tile Hunting)
+- **Käsiteltävät tiedot:** Vierailtujen OpenStreetMap Zoom 14 Slippy Map -tiilien koordinaatit, käyntikerrat sekä klusteritilastot (suurin neliö, suurin klusteri ja suurin yhtenäinen alue).
+- **Tietojen käsittely ja tuonti:** Kaikki tilastolaskenta sekä GPX- ja KML-historian tuonti ja läpikäynti suoritetaan 100 % paikallisesti laitteessasi. Sovellus ei lähetä reittihistoriaasi tai valloituskarttojasi pilvipalveluihin.
+- **Yhteensopivuus:** Laskentalogiikka noudattaa avointa OpenStreetMap-ruudukkoa sekä yleisiä VeloViewer- ja StatsHunters-sääntöjä, mutta EasyTrail toimii itsenäisenä paikallisena sovelluksena eikä synkronoi tietoja näihin palveluihin ilman käyttäjän manuaalisesti tekemää tiedostovientiä.
 
-#### c. Sää- ja ympäristötiedot
-* EasyTrail hakee tietoja julkisista avoimen datan rajapinnoista:
+#### c. Terveys- ja sensoritiedot (Syke)
+- **Mitä tietoja käytetään:** Sykelukemat langattomista Bluetooth Low Energy (BLE) -antureista (sykevyöt, urheilukellot) käyttäen lupia `BLUETOOTH_SCAN` ja `BLUETOOTH_CONNECT`.
+- **Mihin tietoa käytetään:** Reaaliaikaisten sykealueiden (Z1–Z5) laskentaan, reittijäljen värikoodaukseen rasitustason mukaan sekä syketiedon tallentamiseen GPX-reittipisteisiin standardinmukaisena TrackPointExtension-laajennuksena.
+- **Yksityisyys:** Bluetooth-skannausta ei käytetä sijainnin määrittämiseen (`neverForLocation`). Syketiedot käsitellään ainoastaan laitteessa reaaliaikaisesti ja tallennetaan paikalliseen tiedostoon. Tietoja ei luovuteta ulkoisille tahoille.
+
+#### d. Sää- ja ympäristötiedot
+- EasyTrail hakee havainto- ja ennustedataa julkisista avoimen datan rajapinnoista:
   * **Ilmatieteen laitos (FMI):** WMS-sadetutkakuvat ja WFS-salamahavainnot (CC BY 4.0).
-  * **Open-Meteo:** Tuuliennustemallit (CC BY 4.0).
-* Näihin palveluihin välitetään ainoastaan kyseisen kartta-alueen koordinaatit säätietojen noutamiseksi. Pyynnöissä ei välitetä käyttäjätunnisteita tai seurantatietoja.
+  * **Open-Meteo:** Tuuliennustemallit ja -vektorit (CC BY 4.0).
+- Rajapintapyyntöjen mukana välitetään ainoastaan tarkasteltavan karttaikkunan rajauskoordinaatit tarvittavan säädatan noutamiseksi. Pyynnöissä ei lähetetä käyttäjätunnisteita tai seurantatietoja.
 
 ### 2. Kolmannen osapuolen palvelut ja tiedonsiirto
 
-EasyTrail **ei** jaa, myy tai luovuta henkilö-, sijainti- tai terveystietojasi mainostajille tai tiedonvälittäjille.
-* **Karttapalvelut:** Kartat ja polkuaineistot piirretään avoimen lähdekoodin MapLibre GL Native -moottorilla hyödyntäen OpenStreetMap- ja MapAnt-aineistoja.
-* **Tiedostojen hallinta ja jakaminen:** Omistat ja hallitset GPX-tiedostojasi täysin itse. Kun jaat tai viet reittejä laitteesi jakovalikon kautta, EasyTrail tarjoaa mahdollisuuden poistaa syke- ja aikatiedot jaettavasta tiedostosta, jolloin voit jakaa puhtaan reittipohjan ilman henkilökohtaisia biometrisiä tietoja.
+EasyTrail **ei** jaa, myy tai luovuta henkilö-, sijainti-, liikunta- tai tiilitietojasi mainostajille tai tiedonvälittäjille.
+- **Karttapalvelut:** Kartat ja polkuaineistot piirretään laitteessa MapLibre GL Native -moottorilla käyttäen avoimia aineistoja (OpenStreetMap, MapAnt Suomi).
+- **Tiedostojen hallinta ja yksityisyyssuoja:** Omistat ja hallitset reittitiedostojasi täysin itse. Reittejä jaettaessa EasyTrail tarjoaa mahdollisuuden poistaa syke- ja aikatiedot tiedostosta, jolloin voit jakaa puhtaan maastoreitin ilman henkilökohtaisia biometrisiä tietoja tai aikaleimoja.
 
 ### 3. Sovelluksen käyttöoikeudet
-* **Sijainti:** Tarvitaan GPS-navigointiin, reitin tallentamiseen ja paikallisiin säähälytyksiin.
-* **Bluetooth:** Tarvitaan yhteyden muodostamiseen langattomiin BLE-sykeantureihin.
-* **Ilmoitukset ja taustapalvelu:** Tarvitaan jatkuvaan reitin tallennukseen ja ääniopastukseen puhelimen ollessa taskussa.
-* **Värinä:** Käytetään haptisiin hälytyksiin (reittipoikkeamat, lähestyvä sade, salamavaroitukset).
+- **Sijainti (`ACCESS_FINE_LOCATION`, `ACCESS_BACKGROUND_LOCATION`):** Tarvitaan GPS-navigointiin, reitin tallentamiseen, karttaruutujen valloitukseen ja paikallisiin säähälytyksiin etualalla ja taustalla.
+- **Bluetooth (`BLUETOOTH_SCAN`, `BLUETOOTH_CONNECT`):** Tarvitaan yhteyden muodostamiseen langattomiin BLE-sykeantureihin.
+- **Ilmoitukset ja taustapalvelu:** Tarvitaan jatkuvaan reitintallennukseen, tiilien keräämiseen ja ääniopastukseen puhelimen ollessa lukittuna.
+- **Värinä:** Käytetään haptisiin ilmoituksiin (reittipoikkeamat, uudet karttaruudut, lähestyvä sade, salamavaroitukset).
 
 ### 4. Tietojen säilytys ja poistaminen
-Koska kaikki tallennetut reitit, rastit ja asetukset säilytetään vain laitteesi muistissa:
-* Voit poistaa yksittäisiä reittejä milloin tahansa sovelluksen kirjastosta.
-* Sovelluksen poistaminen laitteesta tai sovellustietojen tyhjentäminen poistaa kaikki tallennetut tiedot pysyvästi.
+Kaikki tallennetut reitit, rastit, asetukset ja ruututietokannat säilytetään vain laitteesi paikallisessa muistissa:
+- Voit poistaa yksittäisiä reittejä tai tyhjentää ruutuhistorian sovelluksen valikoista.
+- Sovelluksen poistaminen laitteesta tai sovellustietojen tyhjentäminen Androidin asetuksista poistaa kaikki tietokannat, reitit ja välimuistitiedot pysyvästi.
 
 ### 5. Vastuuvapauslauseke ja turvallisuus
 
 #### a. Kuntoilu- ja syketiedot (Ei lääketieteellistä käyttöä)
-EasyTrail on puhtaasti vapaa-ajan liikuntaan ja kuntoiluun tarkoitettu apuväline. **EasyTrail ei ole lääkinnällinen laite, eikä mitään sen näyttämistä tiedoista, sykelukemista tai harjoitusalueista (Z1–Z5) tule käyttää lääketieteelliseen arviointiin, diagnooseihin, sairauden hoitoon tai äkillisten terveystapahtumien ennakointiin.** Sovelluksen esittämät biometriset tiedot ovat suuntaa-antavia, ja niissä voi esiintyä ulkoisista sensoreista tai tiedonsiirrosta johtuvia häiriöitä ja viiveitä. Keskustele aina lääkärin tai terveydenhuollon ammattilaisen kanssa ennen raskaan liikunnan aloittamista tai jos sinulla on sydän- tai verenkiertoelimistön oireita. Älä koskaan laiminlyö ammatillista lääketieteellistä neuvontaa sovelluksen antamien lukemien perusteella.
+EasyTrail on puhtaasti vapaa-ajan liikuntaan ja harrastustoimintaan tarkoitettu apuväline. **EasyTrail ei ole lääkinnällinen laite, eikä mitään sen esittämistä tiedoista, sykelukemista tai harjoitusalueista (Z1–Z5) tule käyttää lääketieteelliseen arviointiin, diagnooseihin tai sairauden hoitoon.** Keskustele aina lääkärin tai terveydenhuollon ammattilaisen kanssa ennen raskaan liikunnan aloittamista.
 
 #### b. Navigointi, maastoturvallisuus ja vastuu
-Maastopyöräily, luonnossa liikkuminen ja karttanavigointi sisältävät aina luontaisia riskejä (kuten kaatumiset, loukkaantumiset, eksyminen, uupumus ja sään äkilliset muutokset).
-* Kartta- ja maastoaineistot, polkuluokitukset, GPS-sijainti sekä sää- ja salamavaroitukset perustuvat ulkopuolisiin julkisiin tietolähteisiin ja satelliittipaikannukseen. Tiedot voivat olla epätarkkoja, vanhentuneita tai sisältää virheitä ja katvealueita.
-* Sovelluksen antamat sää- ja salamavaroitukset ovat luonteeltaan ainoastaan neuvoa-antavia, eikä sovellusta tule pitää ensisijaisena hengenpelastus- tai hätäturvallisuusvälineenä.
-* **Käyttäjän oma vastuu:** Liikut maastossa ja liikenteessä aina täysin omalla vastuullasi. Vastaat itse omasta reittivalinnastasi, varusteistasi, voimavarojesi arvioinnista, tilannetajustasi maastossa sekä jokamiehenoikeuksien ja paikallisten sääntöjen noudattamisesta.
-* **Vastuunrajoitus:** Sikäli kuin soveltuva lainsäädäntö sen sallii, sovelluksen kehittäjä ei vastaa mistään välittömistä tai välillisistä vahingoista, loukkaantumisista, tapaturmista, eksymisistä, kalustorikoista tai terveydellisistä haitoista, jotka aiheutuvat tai joiden väitetään aiheutuneen EasyTrailin käytöstä tai sen toimintahäiriöistä.
+Maastopyöräily, luonnossa liikkuminen ja ruutujen metsästys tuntemattomassa maastossa sisältävät aina loukkaantumis-, eksymis- ja tapaturmariskejä.
+- Kartta- ja maastoaineistot, polkuluokitukset, GPS-sijainti sekä säävaroitukset perustuvat avoimiin tietolähteisiin ja satelliittipaikannukseen. Tiedot voivat sisältää puutteita, maastomuutoksia, katvealueita tai tilapäisiä virheitä.
+- **Huomio ruutujen metsästyksessä:** Älä koskaan vaaranna turvallisuuttasi tai kulje vaarallisille jyrkänteille, ratapihoille, moottoriteille, viljelyksille, pihapiireihin tai luonnonsuojelualueiden liikkumiskieltoalueille karttaruudun tavoittelemiseksi.
+- **Käyttäjän oma vastuu:** Liikut maastossa ja liikenteessä aina täysin omalla vastuullasi. Vastaat itse omasta reittisuunnittelustasi, varusteistasi, voimavarojesi arvioinnista, tilannetajustasi maastossa sekä jokamiehenoikeuksien ja paikallisten sääntöjen noudattamisesta.
+- **Vastuunrajoitus:** Sikäli kuin soveltuva lainsäädäntö sen sallii, sovelluksen kehittäjä ei vastaa mistään välittömistä tai välillisistä vahingoista, loukkaantumisista, tapaturmista, eksymisistä, kalustorikoista tai aineellisista haitoista, jotka aiheutuvat tai joiden väitetään aiheutuneen EasyTrailin käytöstä.
 
 ### 6. Yhteystiedot
 Jos sinulla on kysyttävää tästä tietosuojaselosteesta tai vastuuehdoista, voit ottaa yhteyttä kehittäjään:
-* **Sähköposti:** easytrail.dev@gmail.com
+- **Sähköposti:** easytrail.dev@gmail.com
