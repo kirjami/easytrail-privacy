@@ -13,7 +13,7 @@ EasyTrail ("we", "our", or "app") is a specialized mountain biking and outdoor n
 
 ### 1. Data Collection and Usage
 
-EasyTrail is designed with an offline-first, privacy-by-design architecture: **we do not operate personal user accounts, and we do not collect, store, transmit, or monetize your personal data on external servers.** All activity and navigation data stays locally on your device.
+EasyTrail is designed with an offline-first, privacy-by-design architecture: **we do not operate personal user accounts, and we do not collect, store, transmit, or sell your personal data on external servers.** All activity and navigation data stays locally on your device.
 
 #### a. Location Data (Foreground and Background)
 - **What we access:** Precise GPS location (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`) and background location access (`ACCESS_BACKGROUND_LOCATION`).
@@ -45,13 +45,14 @@ EasyTrail is designed with an offline-first, privacy-by-design architecture: **w
 
 EasyTrail does **not** sell, broker, or transmit your personal, location, fitness, or tile exploration data to third parties.
 - **Map Rendering:** Offline and cached maps are rendered locally using MapLibre GL Native with open spatial datasets (OpenStreetMap, MapAnt Finland).
+- **Application Updates (Google Play):** EasyTrail uses the official Google Play In-App Updates library (`app-update-ktx`) to check for and install application updates directly via Google Play Store services without collecting personal user profiles or telemetry.
 - **User-Initiated Export & Privacy Filters:** You maintain exclusive custody of your GPX and KML files. When sharing or exporting routes via the system share sheet, EasyTrail provides privacy tools to strip heart rate telemetry and absolute timestamps, enabling you to share geographic routes without disclosing personal biometric schedules.
 
 ### 3. Permissions Summary
-- **Location (`ACCESS_FINE_LOCATION`, `ACCESS_BACKGROUND_LOCATION`):** Required for route recording, tile hunting capture, turn-by-turn guidance, and real-time weather alerts when active or locked.
-- **Bluetooth (`BLUETOOTH_SCAN`, `BLUETOOTH_CONNECT`):** Required for communication with external BLE heart rate monitors.
-- **Foreground Service & Notifications:** Required to maintain uninterrupted background recording and voice announcements in your pocket or pack.
-- **Vibration:** Used for haptic navigation cues, tile discovery notifications, and lightning proximity alerts.
+- **Location (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`, `ACCESS_BACKGROUND_LOCATION`):** Required for route recording, tile hunting capture, turn-by-turn guidance, and real-time weather alerts when active or locked.
+- **Bluetooth (`BLUETOOTH_SCAN`, `BLUETOOTH_CONNECT`):** Required for pairing and streaming data from external BLE heart rate monitors.
+- **Notifications & Foreground Service (`POST_NOTIFICATIONS`, `FOREGROUND_SERVICE`):** Required (especially on Android 13+) to display continuous status notifications during background recording and voice guidance when the device is locked in your pocket or pack.
+- **Vibration (`VIBRATE`):** Used for haptic navigation cues, tile discovery notifications, and lightning proximity alerts.
 
 ### 4. Data Retention and Deletion
 All application states, routes, waypoints, and tile hunting records reside exclusively on local device storage:
@@ -61,7 +62,7 @@ All application states, routes, waypoints, and tile hunting records reside exclu
 ### 5. Disclaimer and Safety Notice
 
 #### a. Fitness and Heart Rate Tracking (Non-Medical Use)
-EasyTrail is strictly an recreational outdoor sports tool. **EasyTrail is not a medical device, and none of its features, metrics, heart rate readings, or training zone estimations (Z1–Z5) are intended for medical diagnosis, health monitoring, treatment, or prevention of any disease or acute health condition.** Always consult a licensed medical professional before beginning strenuous athletic activity or if you experience cardiovascular symptoms.
+EasyTrail is strictly a recreational outdoor sports tool. **EasyTrail is not a medical device, and none of its features, metrics, heart rate readings, or training zone estimations (Z1–Z5) are intended for medical diagnosis, health monitoring, treatment, or prevention of any disease or acute health condition.** Always consult a licensed medical professional before beginning strenuous athletic activity or if you experience cardiovascular symptoms.
 
 #### b. Navigation, Route Safety, and Outdoor Risks
 Mountain biking, backcountry trail navigation, and tile hunting across unfamiliar terrain carry inherent physical risks, including falls, collisions, exhaustion, severe weather encounters, and disorientation.
@@ -117,13 +118,14 @@ EasyTrail noudattaa periaatetta, jossa käyttäjän yksityisyys ja tietojen paik
 
 EasyTrail **ei** jaa, myy tai luovuta henkilö-, sijainti-, liikunta- tai tiilitietojasi mainostajille tai tiedonvälittäjille.
 - **Karttapalvelut:** Kartat ja polkuaineistot piirretään laitteessa MapLibre GL Native -moottorilla käyttäen avoimia aineistoja (OpenStreetMap, MapAnt Suomi).
+- **Sovelluspäivitykset (Google Play):** Sovellus käyttää virallista Google Play In-App Updates -kirjastoa (`app-update-ktx`) päivitysten tarkistamiseen ja asentamiseen suoraan Google Play Kaupan kautta ilman henkilökohtaista käyttäjäseurantaa.
 - **Tiedostojen hallinta ja yksityisyyssuoja:** Omistat ja hallitset reittitiedostojasi täysin itse. Reittejä jaettaessa EasyTrail tarjoaa mahdollisuuden poistaa syke- ja aikatiedot tiedostosta, jolloin voit jakaa puhtaan maastoreitin ilman henkilökohtaisia biometrisiä tietoja tai aikaleimoja.
 
 ### 3. Sovelluksen käyttöoikeudet
-- **Sijainti (`ACCESS_FINE_LOCATION`, `ACCESS_BACKGROUND_LOCATION`):** Tarvitaan GPS-navigointiin, reitin tallentamiseen, karttaruutujen valloitukseen ja paikallisiin säähälytyksiin etualalla ja taustalla.
+- **Sijainti (`ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`, `ACCESS_BACKGROUND_LOCATION`):** Tarvitaan GPS-navigointiin, reitin tallentamiseen, karttaruutujen valloitukseen ja paikallisiin säähälytyksiin etualalla ja taustalla.
 - **Bluetooth (`BLUETOOTH_SCAN`, `BLUETOOTH_CONNECT`):** Tarvitaan yhteyden muodostamiseen langattomiin BLE-sykeantureihin.
-- **Ilmoitukset ja taustapalvelu:** Tarvitaan jatkuvaan reitintallennukseen, tiilien keräämiseen ja ääniopastukseen puhelimen ollessa lukittuna.
-- **Värinä:** Käytetään haptisiin ilmoituksiin (reittipoikkeamat, uudet karttaruudut, lähestyvä sade, salamavaroitukset).
+- **Ilmoitukset ja taustapalvelu (`POST_NOTIFICATIONS`, `FOREGROUND_SERVICE`):** Tarvitaan (erityisesti Android 13+ -laitteilla) jatkuvan tilanneilmoituksen näyttämiseen ja ääniopastukseen puhelimen ollessa lukittuna taustatallennuksen aikana.
+- **Värinä (`VIBRATE`):** Käytetään haptisiin ilmoituksiin (reittipoikkeamat, uudet karttaruudut, lähestyvä sade, salamavaroitukset).
 
 ### 4. Tietojen säilytys ja poistaminen
 Kaikki tallennetut reitit, rastit, asetukset ja ruututietokannat säilytetään vain laitteesi paikallisessa muistissa:
