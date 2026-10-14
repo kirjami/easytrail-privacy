@@ -7,7 +7,7 @@
 <a name="in-english"></a>
 ## In English
 
-**Last updated:** October 12, 2026
+**Last updated:** October 14, 2026
 
 EasyTrail ("we", "our", or "app") is a specialized mountain biking and outdoor navigation application developed to provide real-time route recording, navigation guidance, tile hunting exploration, heart rate monitoring, and weather safety alerts. We are committed to protecting your privacy. This Privacy Policy explains how EasyTrail handles your data and outlines the terms regarding safety, data handling, and user responsibility.
 
@@ -40,6 +40,9 @@ EasyTrail is designed with an offline-first, privacy-by-design architecture: **w
   * **Finnish Meteorological Institute (FMI):** WMS radar composite imagery and WFS lightning observation vectors (CC BY 4.0).
   * **Open-Meteo:** Global wind vector models and forecasts (CC BY 4.0).
 - These requests submit bounding coordinates strictly to fetch relevant visual map tiles and weather vectors. No persistent user identifiers, advertising IDs, or tracking cookies are attached to these network calls.
+
+#### e. Children and Minors
+EasyTrail is suitable for outdoor enthusiasts of various ages, including teenagers aged 13 and older. Because all activity data and location coordinates are stored strictly on a local device and no accounts or cloud profiles are maintained, no personal data from minors is collected on external servers. If you are a parent or guardian and have any questions regarding minors using EasyTrail, please contact us at easytrail.dev@gmail.com.
 
 ### 2. Third-Party Services and Data Sharing
 
@@ -80,7 +83,7 @@ For questions, feedback, or inquiries regarding this Privacy Policy:
 <a name="suomeksi"></a>
 ## Suomeksi
 
-**Päivitetty viimeksi:** 12. lokakuuta 2026
+**Päivitetty viimeksi:** 14. lokakuuta 2026
 
 EasyTrail ("me" tai "sovellus") on maastopyöräilyyn ja ulkoiluun kehitetty navigointisovellus, joka tarjoaa reaaliaikaisen reitintallennuksen, ääniohjauksen, karttaruutujen valloituksen (Tile Hunting), sykemittauksen ja sääturvallisuusvaroitukset. Olemme sitoutuneet suojelemaan yksityisyyttäsi. Tämä tietosuojaseloste kuvaa, miten EasyTrail käsittelee tietojasi sekä määrittelee sovelluksen turvallisuusehdot ja vastuunjaon.
 
@@ -113,6 +116,9 @@ EasyTrail noudattaa periaatetta, jossa käyttäjän yksityisyys ja tietojen paik
   * **Ilmatieteen laitos (FMI):** WMS-sadetutkakuvat ja WFS-salamahavainnot (CC BY 4.0).
   * **Open-Meteo:** Tuuliennustemallit ja -vektorit (CC BY 4.0).
 - Rajapintapyyntöjen mukana välitetään ainoastaan tarkasteltavan karttaikkunan rajauskoordinaatit tarvittavan säädatan noutamiseksi. Pyynnöissä ei lähetetä käyttäjätunnisteita tai seurantatietoja.
+
+#### e. Alaikäiset ja nuoret käyttäjät
+Sovellus soveltuu kaikenikäisille ulkoilijoille, mukaan lukien yli 13-vuotiaat nuoret. Koska kaikki harjoitustiedot ja sijaintikoordinaatit tallennetaan ainoastaan laitteen paikalliseen muistiin eikä palvelimia tai käyttäjätilejä käytetä, alaikäisten henkilötietoja ei kerätä ulkoisiin järjestelmiin. Mikäli olet huoltaja ja sinulla on kysyttävää alaikäisten tietojen käsittelystä EasyTrailissa, voit ottaa yhteyttä sähköpostitse osoitteeseen easytrail.dev@gmail.com.
 
 ### 2. Kolmannen osapuolen palvelut ja tiedonsiirto
 
